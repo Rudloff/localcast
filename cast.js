@@ -40,7 +40,7 @@ function onMediaError(e) {
 
 function castMedia() {
     'use strict';
-    var fileChooser = document.getElementById('fileChooser'), imgURL = 'http://192.168.0.14/localcast/media/' + fileChooser.value, mediaInfo = new chrome.cast.media.MediaInfo(imgURL, fileChooser.options[fileChooser.selectedIndex].dataset.mime), request = new chrome.cast.media.LoadRequest(mediaInfo);
+    var serverInfo = document.getElementById('server_info'), fileChooser = document.getElementById('fileChooser'), imgURL = 'http://' + serverInfo.textContent + serverInfo.dataset.path + '/media/' + fileChooser.value, mediaInfo = new chrome.cast.media.MediaInfo(imgURL, fileChooser.options[fileChooser.selectedIndex].dataset.mime), request = new chrome.cast.media.LoadRequest(mediaInfo);
     console.log('Casting', imgURL);
     session.loadMedia(request, onMediaDiscovered.bind(this, 'loadMedia'), onMediaError);
 }
